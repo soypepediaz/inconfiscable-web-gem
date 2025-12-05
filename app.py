@@ -12,156 +12,148 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- ESTILOS CSS DE ALTO IMPACTO (MODO CYBERPUNK/PRO) ---
+# --- ESTILOS CSS "CLEAN FINTECH" (FONDO BLANCO / PROFESIONAL) ---
 st.markdown("""
 <style>
-    /* Importar fuente futurista */
-    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap');
+    /* Importar fuente Inter (Estándar UI moderna) */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
-    /* --- RESET GENERAL --- */
+    /* --- RESET GENERAL PARA MODO CLARO --- */
     .stApp {
-        background-color: #050505; /* Casi negro */
-        font-family: 'Rajdhani', sans-serif;
+        background-color: #FFFFFF;
+        font-family: 'Inter', sans-serif;
+        color: #1f2937; /* Gris muy oscuro para texto */
     }
     
     h1, h2, h3, h4, h5, h6 {
-        color: #FFFFFF;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
+        color: #111827;
+        font-weight: 800;
+        letter-spacing: -0.5px;
     }
     
-    p, label {
-        color: #E0E0E0 !important;
-        font-size: 1.1rem;
+    p, label, li {
+        color: #4b5563 !important; /* Gris medio */
+        font-size: 1rem;
+        line-height: 1.6;
     }
 
-    /* --- HEADER PERSONALIZADO --- */
+    /* --- HEADER --- */
     .main-header {
         text-align: center;
-        padding: 40px 0;
-        border-bottom: 2px solid #333;
-        margin-bottom: 30px;
-        background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+        padding: 60px 0 40px 0;
+        margin-bottom: 40px;
+        background: linear-gradient(180deg, #F3F4F6 0%, #FFFFFF 100%);
+        border-bottom: 1px solid #E5E7EB;
     }
     .main-title {
-        font-size: 3.5rem;
-        background: -webkit-linear-gradient(#00FF41, #008F24);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0px 0px 20px rgba(0, 255, 65, 0.3);
+        font-size: 3rem;
+        color: #111827;
+        margin-bottom: 10px;
     }
     .subtitle {
-        color: #888;
-        font-size: 1.2rem;
-        margin-top: -10px;
+        color: #6B7280;
+        font-size: 1.25rem;
+        font-weight: 300;
     }
 
-    /* --- INPUTS MEJORADOS (ALTO CONTRASTE) --- */
-    /* Forzar visibilidad en inputs */
+    /* --- TARJETAS (CARD UI) --- */
+    .feature-card {
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        transition: all 0.2s ease;
+    }
+    .feature-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        border-color: #D1D5DB;
+    }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .card-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: #111827; }
+    .card-text { font-size: 0.9rem; color: #6B7280; }
+
+    /* --- INPUTS PERSONALIZADOS --- */
     div[data-baseweb="input"] {
-        background-color: #111111 !important;
-        border: 1px solid #444444 !important;
-        border-radius: 4px !important;
+        background-color: #F9FAFB !important;
+        border: 1px solid #E5E7EB !important;
+        border-radius: 8px !important;
     }
     div[data-baseweb="select"] > div {
-        background-color: #111111 !important;
-        border: 1px solid #444444 !important;
-        color: #FFFFFF !important;
-    }
-    input {
-        color: #00FF41 !important; /* Texto verde neón al escribir */
-        font-weight: bold;
-    }
-    label[data-testid="stLabel"] {
-        color: #00FF41 !important;
-        font-weight: 600;
-        font-size: 0.9rem;
+        background-color: #F9FAFB !important;
+        border: 1px solid #E5E7EB !important;
+        color: #111827 !important;
     }
     
-    /* --- TARJETAS DE PASOS (INFOGRAFÍA) --- */
-    .step-card {
-        background: #111;
-        border: 1px solid #333;
-        padding: 20px;
-        border-radius: 8px;
-        height: 100%;
-        transition: transform 0.3s ease;
-    }
-    .step-card:hover {
-        transform: translateY(-5px);
-        border-color: #00FF41;
-    }
-    .step-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
-    .step-title { color: #fff; font-size: 1.2rem; font-weight: bold; margin-bottom: 5px; }
-    .step-desc { color: #aaa; font-size: 0.9rem; }
-
     /* --- BOTÓN DE ACCIÓN --- */
     .stButton > button {
-        background: linear-gradient(90deg, #00FF41 0%, #008F24 100%);
-        color: #000;
-        font-weight: 800;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 1.2rem;
+        background-color: #10B981; /* Verde Esmeralda */
+        color: white;
+        font-weight: 600;
         border: none;
-        padding: 15px 0;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        width: 100%;
-        border-radius: 4px;
-        margin-top: 20px;
-        box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+        padding: 16px 0;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+        transition: all 0.2s;
     }
     .stButton > button:hover {
-        box-shadow: 0 0 25px rgba(0, 255, 65, 0.6);
-        color: #000;
+        background-color: #059669;
+        box-shadow: 0 6px 8px -1px rgba(16, 185, 129, 0.4);
+        color: white;
     }
 
-    /* --- RESULTADOS (TARJETAS PERSONALIZADAS) --- */
-    .result-container {
-        display: flex;
-        gap: 20px;
-        margin-top: 20px;
+    /* --- RESULTADOS --- */
+    .result-box {
+        padding: 30px;
+        border-radius: 16px;
+        text-align: center;
+        height: 100%;
     }
-    .card-trap {
-        background-color: #1a0505;
-        border: 1px solid #FF3333;
-        border-left: 8px solid #FF3333;
-        border-radius: 8px;
-        padding: 25px;
-        flex: 1;
+    .result-trap {
+        background-color: #FEF2F2; /* Rojo muy pálido */
+        border: 1px solid #FECACA;
+        color: #991B1B;
     }
-    .card-sov {
-        background-color: #051a05;
-        border: 1px solid #00FF41;
-        border-left: 8px solid #00FF41;
-        border-radius: 8px;
-        padding: 25px;
-        flex: 1;
+    .result-sov {
+        background-color: #ECFDF5; /* Verde muy pálido */
+        border: 1px solid #A7F3D0;
+        color: #065F46;
     }
-    .metric-value {
+    .big-number {
         font-size: 2.5rem;
-        font-weight: 700;
+        font-weight: 800;
         margin: 10px 0;
+        letter-spacing: -1px;
     }
-    .metric-label {
-        font-size: 0.9rem;
+    .label-small {
         text-transform: uppercase;
-        color: #888;
-        margin-top: 15px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        opacity: 0.8;
     }
-    .highlight-red { color: #FF3333; }
-    .highlight-green { color: #00FF41; }
+
+    /* --- FORMULARIO LEAD --- */
+    .lead-section {
+        background-color: #111827; /* Sección oscura para contraste al final */
+        color: white;
+        padding: 40px;
+        border-radius: 16px;
+        margin-top: 40px;
+        text-align: center;
+    }
     
-    /* Ocultar elementos molestos */
+    /* Ocultar elementos de Streamlit */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-    
 </style>
 """, unsafe_allow_html=True)
 
-# --- FUNCIONES DE LÓGICA (Misma funcionalidad robusta) ---
+# --- FUNCIONES DE LÓGICA (MANTIENEN LA ROBUSTEZ) ---
 @st.cache_data
 def get_bitcoin_data():
     try:
@@ -173,7 +165,7 @@ def get_bitcoin_data():
             try: btc_close = btc.xs('Close', axis=1, level=0)
             except: 
                 try: btc_close = btc.xs('Close', axis=1, level=1)
-                except: btc_close = btc.iloc[:, 0] # Fallback
+                except: btc_close = btc.iloc[:, 0]
             if isinstance(btc_close, pd.Series): btc_close = btc_close.to_frame()
             btc = btc_close
         else:
@@ -222,149 +214,156 @@ def calculate_cagr(start_val, end_val, years):
 
 # --- UI PRINCIPAL ---
 
-# 1. HEADER GRÁFICO
+# 1. HEADER
 st.markdown("""
 <div class="main-header">
-    <div class="main-title">INCONFISCABLE.XYZ</div>
-    <div class="subtitle">LA PROPIEDAD PRIVADA DEFINITIVA</div>
+    <div class="main-title">Inconfiscable.xyz</div>
+    <div class="subtitle">Recupera la propiedad de tu esfuerzo. Escapa del control.</div>
 </div>
 """, unsafe_allow_html=True)
 
-# 2. SECCIÓN VISUAL (HTML Cards en lugar de columnas estándar)
-st.markdown("### EL CAMINO A LA SOBERANÍA")
+# 2. SECCIÓN VISUAL (CARDS LIMPIAS)
+st.markdown("### El Camino a la Soberanía")
 c1, c2, c3, c4 = st.columns(4)
 
-def card_html(icon, title, text, color):
+def clean_card(icon, title, text):
     return f"""
-    <div class="step-card" style="border-top: 3px solid {color}">
-        <span class="step-icon">{icon}</span>
-        <div class="step-title" style="color:{color}">{title}</div>
-        <div class="step-desc">{text}</div>
+    <div class="feature-card">
+        <span class="card-icon">{icon}</span>
+        <div class="card-title">{title}</div>
+        <div class="card-text">{text}</div>
     </div>
     """
 
-with c1: st.markdown(card_html("🏛️", "LA TRAMPA", "Exchange Centralizado. Trazabilidad total. Fondos congelables.", "#FF3333"), unsafe_allow_html=True)
-with c2: st.markdown(card_html("🔌", "LA ILUSIÓN", "Autocustodia vigilada. Tienen tus llaves públicas asociadas a tu ID.", "#FFAA00"), unsafe_allow_html=True)
-with c3: st.markdown(card_html("🔨", "LA RUPTURA", "Anonimización de fondos. Romper el rastro on-chain.", "#00AAFF"), unsafe_allow_html=True)
-with c4: st.markdown(card_html("🛡️", "INCONFISCABLE", "Soberanía pura. Nadie sabe cuánto tienes. Nadie te lo quita.", "#00FF41"), unsafe_allow_html=True)
+with c1: st.markdown(clean_card("🏛️", "La Trampa", "Exchanges centralizados. Tus datos y fondos están expuestos."), unsafe_allow_html=True)
+with c2: st.markdown(clean_card("🔌", "La Ilusión", "Autocustodia vigilada. Tienen tus claves públicas."), unsafe_allow_html=True)
+with c3: st.markdown(clean_card("🔨", "La Ruptura", "Tecnología de privacidad para romper el rastro on-chain."), unsafe_allow_html=True)
+with c4: st.markdown(clean_card("🛡️", "Inconfiscable", "Soberanía total. Nadie sabe lo que tienes. Eres libre."), unsafe_allow_html=True)
 
-st.markdown("---")
+st.markdown("<br>", unsafe_allow_html=True)
 
 # 3. CALCULADORA
-st.markdown("### 🧮 SIMULADOR DE ESCENARIOS")
+st.markdown("### 🧮 Calculadora de Impacto Patrimonial")
+st.write("Compara el resultado de invertir en el sistema tradicional vs. el sistema soberano.")
 
-# Contenedor con borde sutil
 with st.container():
+    # Usamos st.columns para un layout de inputs limpio
     col_input1, col_input2, col_input3 = st.columns(3)
     
     with col_input1:
-        start_date = st.date_input("FECHA INICIO", datetime.date(2018, 1, 1))
-        amount = st.number_input("INVERSIÓN PERIÓDICA ($)", min_value=10, value=100)
+        start_date = st.date_input("Fecha Inicio", datetime.date(2018, 1, 1))
+        amount = st.number_input("Inversión Periódica ($)", min_value=10, value=100)
     
     with col_input2:
-        freq_option = st.selectbox("FRECUENCIA", ["Diaria", "Semanal", "Mensual"])
+        freq_option = st.selectbox("Frecuencia", ["Diaria", "Semanal", "Mensual"])
         day_param = 0
         if freq_option == "Semanal":
             days = {"Lunes":0, "Martes":1, "Miércoles":2, "Jueves":3, "Viernes":4, "Sábado":5, "Domingo":6}
-            day_param = days[st.selectbox("DÍA SEMANA", list(days.keys()))]
+            day_param = days[st.selectbox("Día Semana", list(days.keys()))]
         elif freq_option == "Mensual":
-            day_param = st.number_input("DÍA DEL MES", 1, 31, 1)
+            day_param = st.number_input("Día del Mes", 1, 31, 1)
 
     with col_input3:
-        future_price = st.number_input("PRECIO FUTURO BTC ($)", min_value=10000.0, value=1000000.0, step=50000.0)
-        future_date = st.date_input("FECHA OBJETIVO", datetime.date(2030, 12, 31))
+        future_price = st.number_input("Precio Futuro BTC ($)", min_value=10000.0, value=1000000.0, step=50000.0)
+        future_date = st.date_input("Fecha Objetivo", datetime.date(2030, 12, 31))
 
-calc_btn = st.button("CALCULAR IMPACTO PATRIMONIAL")
+st.markdown("<br>", unsafe_allow_html=True)
+calc_btn = st.button("CALCULAR MI FUTURO")
 
 if calc_btn:
-    with st.spinner('Analizando Blockchain...'):
+    with st.spinner('Procesando datos históricos...'):
         df_btc = get_bitcoin_data()
         
         if df_btc is None or df_btc.empty:
-            st.error("Error de conexión con datos de mercado.")
+            st.error("⚠️ Error de conexión. No se pudieron descargar los datos de mercado.")
         else:
             dca_table, total_btc, total_invested = calculate_dca(df_btc, start_date, amount, freq_option, day_param)
             
             if dca_table is None:
-                st.error("No hay datos para esa fecha. Selecciona una fecha pasada.")
+                st.error("⚠️ La fecha seleccionada no tiene datos históricos. Elige una fecha pasada.")
             else:
                 # Cálculos
                 val_futuro_bruto = total_btc * future_price
                 
-                # A: Trampa (Impuestos)
+                # A: Trampa
                 ganancia = val_futuro_bruto - total_invested
                 impuestos = ganancia * 0.25 if ganancia > 0 else 0
                 neto_A = val_futuro_bruto - impuestos
-                
                 years = (future_date - start_date).days / 365.25
                 cagr_A = calculate_cagr(total_invested, neto_A, years) * 100
                 
-                # B: Inconfiscable (0 impuestos)
+                # B: Inconfiscable
                 neto_B = val_futuro_bruto
                 cagr_B = calculate_cagr(total_invested, neto_B, years) * 100
-                
                 diff = neto_B - neto_A
 
-                # --- RESULTADOS CON DISEÑO HTML PURO ---
-                st.markdown(f"""
-                <div class="result-container">
-                    <!-- TARJETA TRAMPA -->
-                    <div class="card-trap">
-                        <h3 style="color:#FF3333; margin:0;">🏛️ ESCENARIO A: LA TRAMPA</h3>
-                        <p style="color:#aaa; font-size:0.9rem;">Exchange Centralizado + KYC</p>
-                        
-                        <div class="metric-label">Impuesto al "Patrimonio" (25%)</div>
-                        <div class="metric-value highlight-red">-${impuestos:,.0f}</div>
-                        
-                        <div class="metric-label">Patrimonio Neto Final</div>
-                        <div class="metric-value">${neto_A:,.0f}</div>
-                        
-                        <div style="margin-top:20px; border-top:1px solid #500; padding-top:10px;">
-                            <span style="color:#aaa;">Rentabilidad:</span> 
-                            <span style="color:#fff; font-weight:bold;">{cagr_A:.2f}% CAGR</span>
-                        </div>
-                    </div>
+                # --- RESULTADOS VISUALES LIMPIOS ---
+                res_c1, res_c2 = st.columns(2)
 
-                    <!-- TARJETA SOBERANO -->
-                    <div class="card-sov">
-                        <h3 style="color:#00FF41; margin:0;">🛡️ ESCENARIO B: INCONFISCABLE</h3>
-                        <p style="color:#aaa; font-size:0.9rem;">Autocustodia + Privacidad</p>
-                        
-                        <div class="metric-label">Impuestos Pagados</div>
-                        <div class="metric-value highlight-green">$0</div>
-                        
-                        <div class="metric-label">Patrimonio Neto Final</div>
-                        <div class="metric-value" style="color:#fff; text-shadow:0 0 10px #00FF41;">${neto_B:,.0f}</div>
-                        
-                        <div style="margin-top:20px; border-top:1px solid #050; padding-top:10px;">
-                            <span style="color:#aaa;">Rentabilidad:</span> 
-                            <span style="color:#fff; font-weight:bold;">{cagr_B:.2f}% CAGR</span>
+                with res_c1:
+                    st.markdown(f"""
+                    <div class="result-box result-trap">
+                        <div class="label-small" style="color:#991B1B;">Escenario A: La Trampa</div>
+                        <h3>Exchange Centralizado</h3>
+                        <div style="margin: 20px 0; border-top: 1px dashed #FECACA; border-bottom: 1px dashed #FECACA; padding: 15px 0;">
+                            <div class="label-small">Impuestos (25%)</div>
+                            <div style="font-size: 1.5rem; font-weight: 600;">-${impuestos:,.0f}</div>
                         </div>
+                        <div class="label-small">Patrimonio Final</div>
+                        <div class="big-number">${neto_A:,.0f}</div>
+                        <div style="font-size:0.9rem;">Rentabilidad Real: <strong>{cagr_A:.2f}%</strong></div>
                     </div>
-                </div>
-                
-                <div style="background:#222; border:1px solid #444; padding:20px; margin-top:20px; border-radius:8px; text-align:center;">
-                    <h2 style="color:#fff; font-size:1.5rem; margin:0;">
-                        COSTO DE LA OBEDIENCIA: 
-                        <span style="color:#FF3333; text-decoration:underline;">${diff:,.0f}</span>
-                    </h2>
-                    <p style="margin-top:10px; color:#ccc;">
-                        Ese es el dinero que el sistema te confisca por no operar de manera privada.
+                    """, unsafe_allow_html=True)
+
+                with res_c2:
+                    st.markdown(f"""
+                    <div class="result-box result-sov">
+                        <div class="label-small" style="color:#065F46;">Escenario B: Inconfiscable</div>
+                        <h3>Soberanía & Privacidad</h3>
+                        <div style="margin: 20px 0; border-top: 1px dashed #A7F3D0; border-bottom: 1px dashed #A7F3D0; padding: 15px 0;">
+                            <div class="label-small">Impuestos (No Venta)</div>
+                            <div style="font-size: 1.5rem; font-weight: 600;">$0</div>
+                        </div>
+                        <div class="label-small">Patrimonio Final</div>
+                        <div class="big-number" style="color:#059669">${neto_B:,.0f}</div>
+                        <div style="font-size:0.9rem;">Rentabilidad Real: <strong>{cagr_B:.2f}%</strong></div>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                # Caja de conclusión
+                st.markdown(f"""
+                <div style="background-color: #111827; color: white; padding: 20px; border-radius: 12px; margin-top: 20px; text-align: center;">
+                    <h3 style="color: white; margin: 0;">EL PRECIO DE NO SER SOBERANO: <span style="color: #EF4444;">${diff:,.0f}</span></h3>
+                    <p style="color: #9CA3AF; margin-top: 5px; font-size: 0.9rem;">
+                        Dinero entregado al sistema por operar de forma visible. <br>
+                        En el escenario B, usas tus {total_btc:.4f} BTC como colateral para obtener liquidez sin vender.
                     </p>
                 </div>
                 """, unsafe_allow_html=True)
 
-# 4. CAPTACIÓN
-st.markdown("---")
-st.markdown("### 🔓 ÚNETE A LA RESISTENCIA")
-st.markdown("Recibe la guía paso a paso para ejecutar el **Escenario B** sin errores técnicos.")
+# 4. CAPTACIÓN (Diseño oscuro para contraste final)
+st.markdown("<br><br>", unsafe_allow_html=True)
 
+st.markdown("""
+<div class="lead-section">
+    <h2 style="color:white; margin-bottom: 10px;">Entra en la Madriguera</h2>
+    <p style="color:#D1D5DB; max-width: 600px; margin: 0 auto 20px auto;">
+        La teoría está bien, pero la ejecución lo es todo. Te enviaré el paso a paso exacto para:
+        <br>1. Crear tu banco. 2. Comprar sin KYC. 3. Borrar tu huella.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+# Formulario (integrado visualmente)
 with st.form("lead_form"):
-    email = st.text_input("EMAIL", placeholder="tu@email.com")
-    sub_btn = st.form_submit_button("ENVIARME LA ESTRATEGIA")
+    col_email, col_submit = st.columns([3, 1])
+    with col_email:
+        email = st.text_input("Email", placeholder="tu@email.com", label_visibility="collapsed")
+    with col_submit:
+        sub_btn = st.form_submit_button("RECIBIR LA GUÍA")
     
     if sub_btn and email:
-        st.success(f"✅ Protocolo enviado a {email}. Revisa tu bandeja de entrada.")
+        st.success(f"Protocolo enviado a {email}.")
 
 # FOOTER
-st.markdown("<br><br><div style='text-align:center; color:#444;'>INCONFISCABLE.XYZ v2.0</div>", unsafe_allow_html=True)
+st.markdown("<br><div style='text-align:center; color:#9CA3AF; font-size: 0.8rem;'>© 2025 Inconfiscable.xyz</div>", unsafe_allow_html=True)
